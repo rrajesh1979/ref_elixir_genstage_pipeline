@@ -23,7 +23,9 @@ defmodule EventConsumerSupervisor do
     opts = [
       strategy: :one_for_one,
       subscribe_to: [
-        {EventProducerConsumer, max_demand: 3}
+        {EventProducerConsumer.via("event_producer_consumer_1"), []},
+        {EventProducerConsumer.via("event_producer_consumer_2"), []},
+        {EventProducerConsumer.via("event_producer_consumer_3"), []}
       ]
     ]
 

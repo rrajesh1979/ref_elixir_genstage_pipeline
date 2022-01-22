@@ -10,8 +10,12 @@ defmodule RefElixirGenstagePipeline.Application do
     children = [
       # Starts a worker by calling: RefElixirGenstagePipeline.Worker.start_link(arg)
       # {RefElixirGenstagePipeline.Worker, arg}
+      {Registry, keys: :unique, name: ProducerConsumerRegistry},
       EventProducer,
-      EventProducerConsumer,
+      # EventProducerConsumer,
+      producer_consumer_spec(id: 1),
+      producer_consumer_spec(id: 2),
+      producer_consumer_spec(id: 3),
       EventConsumerSupervisor
     ]
 
@@ -20,4 +24,13 @@ defmodule RefElixirGenstagePipeline.Application do
     opts = [strategy: :one_for_one, name: RefElixirGenstagePipeline.Supervisor]
     Supervisor.start_link(children, opts)
   end
+
+  def producer_consumer_spec(id: id) do
+    id = "event_producer_consumer_#{id}"
+    Supervisor.child_spec({EventProducerConsumer, id}, id: id)
+  end
 end
+
+# Commands
+# data = ["record 1", "record 2", "record 3", "record 4", "record 5", "record 6", "record 7", "record 8", "record 9", "record 10"]
+# EventProducer.process_data(data)
