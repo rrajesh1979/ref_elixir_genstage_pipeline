@@ -10,6 +10,9 @@ defmodule RefElixirGenstagePipeline.Application do
     children = [
       # Starts a worker by calling: RefElixirGenstagePipeline.Worker.start_link(arg)
       # {RefElixirGenstagePipeline.Worker, arg}
+      EventProducer,
+      EventProducerConsumer,
+      EventConsumerSupervisor
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
