@@ -30,7 +30,3 @@ defmodule RefElixirGenstagePipeline.Application do
     Supervisor.child_spec({EventProducerConsumer, id}, id: id)
   end
 end
-
-# Commands
-# data = ["record 1", "record 2", "record 3", "record 4", "record 5", "record 6", "record 7", "record 8", "record 9", "record 10"]
-# EventProducer.process_data(data)

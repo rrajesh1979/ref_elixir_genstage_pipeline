@@ -4,8 +4,8 @@ defmodule EventConsumer do
   """
   require Logger
 
-  def start_link(event) do
-    Logger.info("EventConsumer received #{event}")
+  def start_link(request) do
+    Logger.info("EventConsumer received #{request.request_id}")
 
     Task.start_link(fn ->
       Logger.info("EventConsumer doing work!!")

@@ -18,7 +18,7 @@ defmodule EventProducerConsumer do
     Logger.info("Event Producer Consumer init")
 
     subscription = [
-      {EventProducer, min_demand: 0, max_demand: 1}
+      {EventProducer, min_demand: 1, max_demand: 3}
     ]
 
     {:producer_consumer, initial_state, subscribe_to: subscription}
